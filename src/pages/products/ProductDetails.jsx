@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useProducts } from "../../context/ProductContext";
 import "./ProductDetails.css";
+import { toast } from "react-toastify";
 
 const ProductDetails = () => {
     const { id } = useParams();
@@ -76,7 +77,6 @@ const ProductDetails = () => {
     useEffect(() => {
         if (!loading && products.length > 0 && id) {
             const foundProduct = products.find((p) => p.id === parseInt(id));
-            console.log("Found product:", foundProduct);
             setProduct(foundProduct);
         }
     }, [id, products, loading]);
@@ -113,9 +113,76 @@ const ProductDetails = () => {
         return null;
     }
 
+    // const handleAddToCart = () => {
+    //     addToCart(product, quantity);
+    //     console.log("Added to cart:", product.name);
+    // };
+
     const handleAddToCart = () => {
-        addToCart(product, quantity);
-        console.log("Added to cart:", product.name);
+        // Check if user is logged in (assuming you store auth state in localStorage or context)
+        const isLoggedIn =
+            localStorage.getItem("isLoggedIn") === "true" ||
+            localStorage.getItem("authToken") ||
+            localStorage.getItem("user"); // Adjust based on your auth implementation
+
+        if (!isLoggedIn) {
+            // Show login required toast
+            toast.error("Please log in to add items to cart", {
+                duration: 3000,
+                position: "top-center",
+                style: {
+                    background: "#ff4757",
+                    color: "white",
+                    fontWeight: "500",
+                    borderRadius: "8px",
+                    padding: "12px 20px",
+                },
+                icon: "🔒",
+            });
+
+            // Optionally redirect to login page after a short delay
+            setTimeout(() => {
+                navigate("/login");
+            }, 1500);
+
+            return;
+        }
+
+        // User is logged in, add to cart
+        try {
+            addToCart(product, quantity);
+
+            // Show success toast
+            toast.success("Item added to cart!", {
+                duration: 2500,
+                position: "top-center",
+                style: {
+                    background: "#2ed573",
+                    color: "white",
+                    fontWeight: "500",
+                    borderRadius: "8px",
+                    padding: "12px 20px",
+                },
+                icon: "🛒",
+            });
+
+            console.log("Added to cart:", product.name);
+        } catch (error) {
+            // Handle any errors during add to cart
+            toast.error("Failed to add item to cart", {
+                duration: 3000,
+                position: "top-center",
+                style: {
+                    background: "#ff4757",
+                    color: "white",
+                    fontWeight: "500",
+                    borderRadius: "8px",
+                    padding: "12px 20px",
+                },
+                icon: "❌",
+            });
+            console.error("Error adding to cart:", error);
+        }
     };
 
     // Function to get truncated description
@@ -171,47 +238,6 @@ const ProductDetails = () => {
                         <p className="pd-short">
                             {product.shortDescription || product.description}
                         </p>
-                        <div></div>
-                        {/* Quantity Selector */}
-                        <div className="pd-quantity">
-                            <span className="quantity-label">Quantity:</span>
-                            <div className="quantity-controls">
-                                <button
-                                    className="quantity-btn"
-                                    onClick={() =>
-                                        setQuantity(Math.max(1, quantity - 1))
-                                    }
-                                    disabled={quantity <= 1}
-                                >
-                                    −
-                                </button>
-                                <input
-                                    type="number"
-                                    className="quantity-display"
-                                    value={quantity}
-                                    onChange={(e) =>
-                                        setQuantity(
-                                            Math.max(
-                                                1,
-                                                parseInt(e.target.value) || 1
-                                            )
-                                        )
-                                    }
-                                    min="1"
-                                    max="10"
-                                />
-                                <button
-                                    className="quantity-btn"
-                                    onClick={() =>
-                                        setQuantity(Math.min(10, quantity + 1))
-                                    }
-                                    disabled={quantity >= 10}
-                                >
-                                    +
-                                </button>
-                            </div>
-                        </div>
-
                         <button
                             className="pd-add-btn"
                             onClick={handleAddToCart}

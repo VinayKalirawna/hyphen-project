@@ -145,7 +145,6 @@ const Navbar = () => {
     };
 
     const handleCategoryClick = (category) => {
-        console.log(`Navigating to category: ${category}`);
         navigate(`/category/${encodeURIComponent(category)}`); // Change this line
         setActiveDropdown(null);
     };

@@ -46,14 +46,6 @@
     font-family: "BR sonoma";
 }
 
-/* Quantity Selector */
-.pd-quantity {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin: 1.5rem 0;
-}
-
 .quantity-label {
     font-size: 1rem;
     font-weight: 600;
@@ -70,101 +62,6 @@
     background: white;
 }
 
-.quantity-btn {
-    width: 40px;
-    height: 40px;
-    border: none;
-    background: #f8f9fa;
-    color: #2c2c2c;
-    font-size: 1.2rem;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-}
-
-.quantity-btn:hover {
-    background: #3b82f6;
-    color: white;
-}
-
-.quantity-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    background: #f1f1f1;
-}
-
-.quantity-btn:disabled:hover {
-    background: #f1f1f1;
-    color: #2c2c2c;
-}
-
-.quantity-display {
-    width: 60px;
-    height: 40px;
-    border: none;
-    background: white;
-    text-align: center;
-    font-size: 1rem;
-    font-weight: 600;
-    color: #2c2c2c;
-    border-left: 1px solid #e5e5e5;
-    border-right: 1px solid #e5e5e5;
-}
-
-.quantity-display:focus {
-    outline: none;
-    background: #f8f9fa;
-}
-
-/* Alternative: More compact version */
-.pd-quantity-compact {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin: 1rem 0;
-}
-
-.quantity-controls-compact {
-    display: flex;
-    align-items: center;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    background: white;
-}
-
-.quantity-btn-compact {
-    width: 32px;
-    height: 32px;
-    border: none;
-    background: transparent;
-    color: #666;
-    font-size: 1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-}
-
-.quantity-btn-compact:hover {
-    background: #f0f0f0;
-    color: #333;
-}
-
-.quantity-display-compact {
-    width: 50px;
-    height: 32px;
-    border: none;
-    background: transparent;
-    text-align: center;
-    font-size: 14px;
-    font-weight: 500;
-    color: #333;
-}
-
 .pd-add-btn {
     width: 500px;
     height: 60px;
@@ -178,6 +75,13 @@
     padding: 2rem 1.5rem 2rem 9rem;
     border: none;
     margin-bottom: 4rem;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+        background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pd-add-btn:hover {
+    transform: scale(0.95);
+    background-color: #6a6c6e;
 }
 
 .pd-highlights {
@@ -975,7 +879,14 @@
     .accordion-body {
         padding: 1rem;
     }
+    .pd-main-img {
+        margin-top: 2rem;
+        height: 400px;
+    }
 
+    .pd-thumb-img {
+        height: 400px;
+    }
     .gallery-grid {
         grid-template-columns: 1fr 1fr;
     }

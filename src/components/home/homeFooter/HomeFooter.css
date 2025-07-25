@@ -1,6 +1,7 @@
 .home-foot-header {
     margin: 0 30% 2rem;
     line-height: 5rem;
+    text-align: center;
 }
 
 .explore {
@@ -30,7 +31,7 @@
     margin-left: calc(-50vw + 50%);
     position: relative;
     flex-shrink: 0;
-    width: 50%; /* Set explicit width */
+    width: 50%;
 }
 
 .first-img img {
@@ -117,11 +118,129 @@
     display: none;
 }
 
-/* Responsive - simplified */
+/* Large Desktop (1440px+) */
+@media (min-width: 1440px) {
+    .home-foot-header {
+        margin: 0 25% 2rem;
+    }
+
+    .explore {
+        font-size: 7rem;
+    }
+
+    .pure-exp {
+        font-size: 6rem;
+    }
+
+    .product-wrapper {
+        min-width: 350px;
+        max-width: 350px;
+        height: 550px;
+    }
+}
+
+/* Desktop (1200px to 1439px) */
+@media (max-width: 1439px) and (min-width: 1200px) {
+    .home-foot-header {
+        margin: 0 20% 2rem;
+    }
+
+    .explore {
+        font-size: 5.5rem;
+    }
+
+    .pure-exp {
+        font-size: 4.5rem;
+    }
+}
+
+/* Medium Desktop (992px to 1199px) */
+@media (max-width: 1199px) and (min-width: 992px) {
+    .home-foot-header {
+        margin: 0 15% 2rem;
+    }
+
+    .explore {
+        font-size: 5rem;
+    }
+
+    .pure-exp {
+        font-size: 4rem;
+    }
+
+    .product-wrapper {
+        min-width: 280px;
+        max-width: 280px;
+        height: 450px;
+    }
+
+    .carousel-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+}
+
+/* Small Desktop/Large Tablet (768px to 991px) */
+@media (max-width: 991px) and (min-width: 769px) {
+    .home-foot-header {
+        margin: 0 10% 1.5rem;
+        line-height: 4rem;
+    }
+
+    .explore {
+        font-size: 4.5rem;
+    }
+
+    .pure-exp {
+        font-size: 3.5rem;
+    }
+
+    .img-prod-container {
+        min-height: 90vh;
+        gap: 15px;
+    }
+
+    .first-img img {
+        height: 85vh;
+    }
+
+    .products-section {
+        height: 85vh;
+    }
+
+    .product-wrapper {
+        min-width: 250px;
+        max-width: 250px;
+        height: 400px;
+    }
+
+    .products-container {
+        min-height: 400px;
+        padding: 15px 0;
+    }
+}
+
+/* Tablet (768px and below) */
 @media (max-width: 768px) {
+    .home-foot-header {
+        margin: 0 5% 1.5rem;
+        line-height: 3.5rem;
+    }
+
+    .explore {
+        font-size: 4rem;
+    }
+
+    .pure-exp {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+    }
+
     .img-prod-container {
         flex-direction: column;
         gap: 20px;
+        min-height: auto;
     }
 
     .first-img {
@@ -136,11 +255,232 @@
     .products-section {
         width: 100%;
         min-height: auto;
+        height: auto;
+    }
+
+    .product-wrapper {
+        min-width: 220px;
+        max-width: 220px;
+        height: 350px;
+    }
+
+    .products-container {
+        min-height: 350px;
+        padding: 15px 0;
+    }
+
+    .carousel-arrow {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+}
+
+/* Mobile Large (576px to 767px) */
+@media (max-width: 767px) and (min-width: 576px) {
+    .home-foot-header {
+        margin: 0 2% 1rem;
+        line-height: 3rem;
+    }
+
+    .explore {
+        font-size: 3.5rem;
+    }
+
+    .pure-exp {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .first-img img {
+        height: 50vh;
+    }
+
+    .product-wrapper {
+        min-width: 200px;
+        max-width: 200px;
+        height: 320px;
+    }
+
+    .products-container {
+        min-height: 320px;
+        padding: 10px 0;
+        gap: 10px;
+    }
+
+    .product-carousel {
+        gap: 10px;
+    }
+}
+
+/* Mobile Medium (480px to 575px) */
+@media (max-width: 575px) and (min-width: 480px) {
+    .home-foot-header {
+        margin: 0 1% 1rem;
+        line-height: 2.5rem;
+    }
+
+    .explore {
+        font-size: 3rem;
+    }
+
+    .pure-exp {
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
+    }
+
+    .first-img img {
+        height: 45vh;
     }
 
     .product-wrapper {
         min-width: 180px;
         max-width: 180px;
-        height: 350px;
+        height: 300px;
+    }
+
+    .products-container {
+        min-height: 300px;
+        padding: 8px 0;
+        gap: 8px;
+    }
+
+    .product-carousel {
+        gap: 8px;
+    }
+
+    .carousel-arrow {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+    }
+}
+
+/* Mobile Small (375px to 479px) */
+@media (max-width: 479px) and (min-width: 375px) {
+    .home-foot-header {
+        margin: 0 1% 0.8rem;
+        line-height: 2.2rem;
+    }
+
+    .explore {
+        font-size: 2.5rem;
+    }
+
+    .pure-exp {
+        font-size: 2rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .first-img img {
+        height: 40vh;
+    }
+
+    .product-wrapper {
+        min-width: 160px;
+        max-width: 160px;
+        height: 280px;
+    }
+
+    .products-container {
+        min-height: 280px;
+        padding: 5px 0;
+        gap: 6px;
+    }
+
+    .product-carousel {
+        gap: 6px;
+    }
+
+    .carousel-arrow {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+}
+
+/* Mobile Extra Small (320px to 374px) */
+@media (max-width: 374px) {
+    .home-foot-header {
+        margin: 0 0.5% 0.5rem;
+        line-height: 2rem;
+    }
+
+    .explore {
+        font-size: 2.2rem;
+    }
+
+    .pure-exp {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .first-img img {
+        height: 35vh;
+    }
+
+    .product-wrapper {
+        min-width: 140px;
+        max-width: 140px;
+        height: 250px;
+    }
+
+    .products-container {
+        min-height: 250px;
+        padding: 5px 0;
+        gap: 5px;
+    }
+
+    .product-carousel {
+        gap: 5px;
+    }
+
+    .carousel-arrow {
+        width: 28px;
+        height: 28px;
+        font-size: 11px;
+    }
+}
+
+/* Ultra Small Devices (below 320px) */
+@media (max-width: 319px) {
+    .home-foot-header {
+        margin: 0 0.5% 0.5rem;
+        line-height: 1.8rem;
+    }
+
+    .explore {
+        font-size: 2rem;
+    }
+
+    .pure-exp {
+        font-size: 1.6rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .first-img img {
+        height: 30vh;
+    }
+
+    .product-wrapper {
+        min-width: 120px;
+        max-width: 120px;
+        height: 220px;
+    }
+
+    .products-container {
+        min-height: 220px;
+        padding: 3px 0;
+        gap: 3px;
+    }
+
+    .product-carousel {
+        gap: 3px;
+    }
+
+    .carousel-arrow {
+        width: 25px;
+        height: 25px;
+        font-size: 10px;
     }
 }

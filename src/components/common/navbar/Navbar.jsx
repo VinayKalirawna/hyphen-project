@@ -34,8 +34,6 @@ const Navbar = () => {
             section: "ROUTINES",
             items: [
                 "NO MORE OILY-SKIN BUNDLE",
-                "DAILY DRY-SKIN CARE BUNDLE",
-                "DAY CARE ROUTINE",
                 "NIGHT CARE ROUTINE FOR OILY SKIN",
                 "NIGHT CARE ROUTINE FOR DRY SKIN",
                 "JUICY LIPS OR NOTHING KIT",

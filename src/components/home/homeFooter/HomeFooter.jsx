@@ -1,6 +1,5 @@
 import { useProducts } from "../../../context/ProductContext";
 import ProductCard from "../../common/productCard/ProductCard";
-import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
@@ -21,16 +20,6 @@ const HomeFooter = () => {
         : [];
 
     const totalItems = featuredProducts.length;
-
-    // Debug logging
-    useEffect(() => {
-        console.log("HomeFooter Debug:");
-        console.log("- Loading:", loading);
-        console.log("- Products:", products);
-        console.log("- Featured Products:", featuredProducts);
-        console.log("- Is In View:", isInView);
-        console.log("- Total Items:", totalItems);
-    }, [loading, products, featuredProducts, isInView]);
 
     const scrollCarousel = (direction) => {
         const container = carouselRef.current;

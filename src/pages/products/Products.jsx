@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useProducts } from "../../context/ProductContext";
-import ProductCard from "/Users/vinaykalirawna/Desktop/hyphen project/src/components/common/productCard/ProductCard.jsx";
+import ProductCard from "../../components/common/productCard/ProductCard";
 import "./ProductCategory.css";
 import "./Products.css";
 

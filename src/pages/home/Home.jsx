@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
-import HeroSection from "/Users/vinaykalirawna/Desktop/hyphen project/src/components/home/heroSection/HeroSection.jsx";
-import Banner from "/Users/vinaykalirawna/Desktop/hyphen project/src/components/home/banner/Banner.jsx";
 import "./Home.css";
 import HomeFooter from "../../components/home/homeFooter/HomeFooter";
+import Banner from "../../components/home/banner/Banner";
+import HeroSection from "../../components/home/heroSection/HeroSection";
 
 export const Home = () => {
     const featuresRef = useRef(null);

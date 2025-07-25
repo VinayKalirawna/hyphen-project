@@ -1,0 +1,80 @@
+.marquee-banner {
+    width: 100%;
+    background: #5aa2da;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+    padding: 20px 0;
+}
+
+.marquee-container {
+    height: 80px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.marquee-images {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    will-change: transform;
+}
+
+.marquee-logo-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 4rem;
+    flex-shrink: 0;
+    filter: invert(1);
+}
+
+.marquee-logo {
+    min-height: 100px;
+    min-width: 120px;
+    max-height: 80px;
+    max-width: 120px;
+    object-fit: contain;
+    transition: all 0.3s ease;
+    display: block;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .marquee-banner {
+        padding: 15px 0;
+    }
+
+    .marquee-container {
+        height: 60px;
+    }
+
+    .marquee-logo-item {
+        margin-right: 3rem;
+    }
+
+    .marquee-logo {
+        min-height: 40px;
+        min-width: 100px;
+        max-height: 40px;
+        max-width: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .marquee-logo-item {
+        margin-right: 2rem;
+    }
+
+    .marquee-logo {
+        min-height: 35px;
+        min-width: 80px;
+        max-height: 35px;
+        max-width: 80px;
+    }
+}

@@ -1,0 +1,726 @@
+/* Product Category Page */
+.product-category-page {
+    min-height: 100vh;
+}
+
+.page-header {
+    text-align: center;
+    padding: 2rem 0;
+    background: white;
+    margin-bottom: 2rem;
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c2c2c;
+    margin-bottom: 0.5rem;
+}
+
+.page-header p {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.category-content {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.filter-sidebar {
+    flex: 0 0 280px !important;
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 2rem;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+    order: 1 !important;
+}
+
+.products-main {
+    flex: 1;
+    min-width: 0;
+    order: 2 !important;
+}
+
+.mobile-filter-header {
+    display: none !important;
+}
+
+.filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.filter-header h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2c2c2c;
+    margin: 0;
+}
+
+.clear-filters-btn {
+    background: none;
+    border: 1px solid #3b82f6;
+    color: #3b82f6;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.clear-filters-btn:hover {
+    background: #3b82f6;
+    color: white;
+}
+
+.filter-section {
+    margin-bottom: 2rem;
+}
+
+.filter-section h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #2c2c2c;
+    margin-bottom: 1rem;
+}
+
+.filter-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.filter-checkbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    padding-left: 2rem;
+    font-size: 14px;
+    color: #4a4a4a;
+    transition: color 0.3s ease;
+}
+
+.filter-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 18px;
+    width: 18px;
+    background-color: #fff;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.filter-checkbox:hover .checkmark {
+    border-color: #3b82f6;
+}
+
+.filter-checkbox input:checked ~ .checkmark {
+    background-color: #3b82f6;
+    border-color: #3b82f6;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 6px;
+    top: 3px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.filter-checkbox input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.filter-label {
+    margin-left: 0.5rem;
+    line-height: 1.4;
+}
+
+.mobile-filter-toggle {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.results-count {
+    font-size: 14px;
+    color: #666;
+    font-weight: 500;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.no-products {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.no-products h3 {
+    color: #2c2c2c;
+    margin-bottom: 0.5rem;
+}
+
+.no-products p {
+    color: #666;
+}
+
+/* Desktop/Large Tablet (1024px - 1200px) */
+@media (max-width: 1200px) {
+    .filter-sidebar {
+        flex: 0 0 260px !important;
+        padding: 1.3rem;
+    }
+
+    .page-header h1 {
+        font-size: 2.3rem;
+    }
+
+    .page-header p {
+        font-size: 1rem;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 1.3rem;
+    }
+
+    .category-content {
+        gap: 1.5rem;
+    }
+}
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+    .page-header {
+        padding: 1.5rem 0;
+        margin-bottom: 1.5rem;
+    }
+
+    .page-header h1 {
+        font-size: 2.1rem;
+    }
+
+    .page-header p {
+        font-size: 0.95rem;
+        padding: 0 1rem;
+    }
+
+    .filter-sidebar {
+        flex: 0 0 240px !important;
+        padding: 1.2rem;
+        max-height: calc(100vh - 3rem);
+        top: 1.5rem;
+    }
+
+    .filter-header h3 {
+        font-size: 1.1rem;
+    }
+
+    .filter-section h4 {
+        font-size: 0.95rem;
+    }
+
+    .filter-checkbox {
+        font-size: 13px;
+        padding-left: 1.8rem;
+        gap: 0.5rem;
+    }
+
+    .checkmark {
+        height: 16px;
+        width: 16px;
+    }
+
+    .checkmark:after {
+        left: 5px;
+        top: 2px;
+        width: 3px;
+        height: 7px;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 1.2rem;
+    }
+
+    .category-content {
+        gap: 1.2rem;
+    }
+}
+
+/* Small Tablet/Large Mobile (600px - 768px) */
+@media (max-width: 768px) {
+    .page-header {
+        padding: 1.2rem 0;
+        margin-bottom: 1rem;
+    }
+
+    .page-header h1 {
+        font-size: 1.9rem;
+        padding: 0 1rem;
+    }
+
+    .page-header p {
+        font-size: 0.9rem;
+        padding: 0 1.2rem;
+    }
+
+    .category-content {
+        flex-direction: column !important;
+        gap: 1rem;
+    }
+
+    /* Mobile Filter Toggle - Show */
+    .mobile-filter-header {
+        display: flex !important;
+        justify-content: space-between;
+        align-items: center;
+        background: white;
+        padding: 1rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        margin-bottom: 1rem;
+    }
+
+    .mobile-filter-toggle {
+        padding: 10px 16px;
+        font-size: 14px;
+        border-radius: 8px;
+    }
+
+    /* Filter Sidebar - Mobile Behavior */
+    .filter-sidebar {
+        flex: none !important;
+        width: 100% !important;
+        position: static !important;
+        max-height: none !important;
+        order: 1 !important;
+        margin-bottom: 1rem;
+        padding: 1rem;
+
+        /* Hidden by default on mobile - controlled by JS */
+        display: none;
+    }
+
+    .filter-sidebar.mobile-open {
+        display: block !important;
+    }
+
+    .products-main {
+        order: 2 !important;
+        width: 100%;
+    }
+
+    .filter-header {
+        margin-bottom: 1rem;
+        padding-bottom: 0.8rem;
+    }
+
+    .filter-header h3 {
+        font-size: 1rem;
+    }
+
+    .filter-section {
+        margin-bottom: 1.5rem;
+    }
+
+    .filter-section h4 {
+        font-size: 0.9rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .filter-options {
+        gap: 0.6rem;
+    }
+
+    .filter-checkbox {
+        font-size: 13px;
+        padding-left: 1.6rem;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 1rem;
+    }
+
+    .results-count {
+        font-size: 13px;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+}
+
+/* Mobile (480px - 600px) */
+@media (max-width: 600px) {
+    .page-header {
+        padding: 1rem 0;
+        margin-bottom: 0.8rem;
+    }
+
+    .page-header h1 {
+        font-size: 1.7rem;
+        padding: 0 0.8rem;
+    }
+
+    .page-header p {
+        font-size: 0.85rem;
+        padding: 0 1rem;
+    }
+
+    .mobile-filter-header {
+        padding: 0.8rem;
+        margin-bottom: 0.8rem;
+        border-radius: 6px;
+    }
+
+    .mobile-filter-toggle {
+        padding: 8px 14px;
+        font-size: 13px;
+        border-radius: 6px;
+    }
+
+    .results-count {
+        font-size: 12px;
+    }
+
+    .filter-sidebar {
+        padding: 0.8rem;
+        border-radius: 8px;
+    }
+
+    .filter-header {
+        margin-bottom: 0.8rem;
+        padding-bottom: 0.6rem;
+    }
+
+    .filter-header h3 {
+        font-size: 0.95rem;
+    }
+
+    .clear-filters-btn {
+        padding: 3px 10px;
+        font-size: 11px;
+        border-radius: 4px;
+    }
+
+    .filter-section {
+        margin-bottom: 1.2rem;
+    }
+
+    .filter-section h4 {
+        font-size: 0.85rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .filter-options {
+        gap: 0.5rem;
+    }
+
+    .filter-checkbox {
+        font-size: 12px;
+        padding-left: 1.4rem;
+    }
+
+    .checkmark {
+        height: 14px;
+        width: 14px;
+    }
+
+    .checkmark:after {
+        left: 4px;
+        top: 1px;
+        width: 2px;
+        height: 6px;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 0.8rem;
+    }
+
+    .no-products {
+        padding: 2rem;
+        border-radius: 8px;
+    }
+
+    .no-products h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.4rem;
+    }
+
+    .no-products p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Mobile Portrait (max-width: 480px) */
+@media (max-width: 480px) {
+    .page-header {
+        padding: 0.8rem 0;
+        margin-bottom: 0.6rem;
+    }
+
+    .page-header h1 {
+        font-size: 1.5rem;
+        padding: 0 0.5rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .page-header p {
+        font-size: 0.8rem;
+        padding: 0 0.8rem;
+    }
+
+    .mobile-filter-header {
+        padding: 0.6rem;
+        margin-bottom: 0.6rem;
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: stretch;
+    }
+
+    .mobile-filter-toggle {
+        width: 100%;
+        justify-content: center;
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .results-count {
+        font-size: 11px;
+        text-align: center;
+    }
+
+    .filter-sidebar {
+        padding: 0.6rem;
+    }
+
+    .filter-header h3 {
+        font-size: 0.9rem;
+    }
+
+    .clear-filters-btn {
+        padding: 2px 8px;
+        font-size: 10px;
+    }
+
+    .filter-section h4 {
+        font-size: 0.8rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .filter-checkbox {
+        font-size: 11px;
+        padding-left: 1.2rem;
+    }
+
+    .checkmark {
+        height: 12px;
+        width: 12px;
+    }
+
+    .checkmark:after {
+        left: 3px;
+        top: 1px;
+        width: 2px;
+        height: 5px;
+        border-width: 0 1px 1px 0;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.6rem;
+    }
+
+    .no-products {
+        padding: 1.5rem;
+    }
+
+    .no-products h3 {
+        font-size: 1rem;
+    }
+
+    .no-products p {
+        font-size: 0.85rem;
+    }
+}
+
+/* Extra Small Mobile (max-width: 360px) */
+@media (max-width: 360px) {
+    .page-header h1 {
+        font-size: 1.3rem;
+        padding: 0 0.3rem;
+    }
+
+    .page-header p {
+        font-size: 0.75rem;
+        padding: 0 0.6rem;
+    }
+
+    .mobile-filter-header {
+        padding: 0.5rem;
+    }
+
+    .mobile-filter-toggle {
+        font-size: 11px;
+        padding: 8px;
+    }
+
+    .filter-sidebar {
+        padding: 0.5rem;
+    }
+
+    .filter-header h3 {
+        font-size: 0.85rem;
+    }
+
+    .filter-section h4 {
+        font-size: 0.75rem;
+    }
+
+    .filter-checkbox {
+        font-size: 10px;
+        padding-left: 1rem;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    .no-products {
+        padding: 1rem;
+    }
+
+    .no-products h3 {
+        font-size: 0.9rem;
+    }
+
+    .no-products p {
+        font-size: 0.8rem;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .filter-checkbox:hover .checkmark {
+        border-color: #ddd;
+    }
+
+    .filter-checkbox:active .checkmark {
+        border-color: #3b82f6;
+        transform: translateY(-50%) scale(0.95);
+        transition: all 0.1s ease;
+    }
+
+    .clear-filters-btn:hover {
+        background: none;
+        color: #3b82f6;
+    }
+
+    .clear-filters-btn:active {
+        background: #3b82f6;
+        color: white;
+        transform: scale(0.95);
+        transition: all 0.1s ease;
+    }
+
+    .mobile-filter-toggle:active {
+        transform: scale(0.95);
+        transition: all 0.1s ease;
+    }
+
+    /* Larger touch targets */
+    .filter-checkbox {
+        min-height: 40px;
+        display: flex;
+        align-items: center;
+    }
+
+    .mobile-filter-toggle {
+        min-height: 44px;
+    }
+}
+
+/* Landscape orientation for mobile devices */
+@media (max-width: 768px) and (orientation: landscape) {
+    .page-header {
+        padding: 0.8rem 0;
+        margin-bottom: 0.8rem;
+    }
+
+    .page-header h1 {
+        font-size: 1.6rem;
+    }
+
+    .filter-sidebar {
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+}
+
+/* High DPI screen optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .filter-sidebar {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .mobile-filter-header {
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .checkmark {
+        border-width: 1.5px;
+    }
+
+    .filter-checkbox input:checked ~ .checkmark {
+        box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+    }
+}

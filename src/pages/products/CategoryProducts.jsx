@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useProducts } from "../../context/ProductContext";
 import ProductCard from "../../components/common/productCard/ProductCard";
 import "./Products.css";
@@ -13,6 +13,7 @@ const CategoryProducts = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedCategory, setSelectedCategory] = useState(categoryName);
     const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
+    const navigate = useNavigate();
 
     const categories = getAllCategories();
 
@@ -42,13 +43,12 @@ const CategoryProducts = () => {
             return aValue < bValue ? 1 : -1;
         }
     });
-
+    
     const handleCategoryChange = (category) => {
-        // Navigate to all products or specific category
         if (category === "All Products") {
-            window.location.href = "/products";
+            navigate("/products");
         } else if (category !== categoryName) {
-            window.location.href = `/category/${encodeURIComponent(category)}`;
+            navigate(`/category/${category}`);
         }
     };
 

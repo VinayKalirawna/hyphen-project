@@ -141,7 +141,7 @@ html.no-scroll {
 .explore-all-product {
     position: absolute;
     bottom: 2rem;
-    left: 50%;
+    left: 20%;
     transform: translateX(-50%);
     width: calc(100% - 4rem);
     max-width: 900px;

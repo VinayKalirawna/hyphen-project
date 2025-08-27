@@ -8,13 +8,30 @@ const Navbar = () => {
     const navigate = useNavigate();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { setSelectedCategory, setSelectedConcern } = useProducts();
-    const [isVisible, setIsVisible] = useState(true);
     const [isScrolledPastFirstPage, setIsScrolledPastFirstPage] =
         useState(false);
     const [activeDropdown, setActiveDropdown] = useState(null);
     const lastScrollY = useRef(0);
     const controls = useAnimation();
     const dropdownRef = useRef(null);
+
+    // New: Helper function to close the menu
+    const closeMenu = () => {
+        setIsMenuOpen(false);
+        setActiveDropdown(null);
+    };
+
+    // New: Effect to prevent body scroll when the mobile menu is open
+    useEffect(() => {
+        if (isMenuOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "auto";
+        }
+        return () => {
+            document.body.style.overflow = "auto";
+        };
+    }, [isMenuOpen]);
 
     const shopCategories = [
         {
@@ -29,7 +46,6 @@ const Navbar = () => {
                 "DRY & CALMING RANGE",
             ],
         },
-        // Right Column - Routines
         {
             section: "ROUTINES",
             items: [
@@ -118,7 +134,6 @@ const Navbar = () => {
         };
     }, [controls]);
 
-    // Handle click outside to close dropdown
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (
@@ -144,15 +159,16 @@ const Navbar = () => {
         setActiveDropdown(activeDropdown === dropdown ? null : dropdown);
     };
 
+    // Updated to close menu on navigation
     const handleCategoryClick = (category) => {
-        navigate(`/category/${encodeURIComponent(category)}`); // Change this line
-        setActiveDropdown(null);
+        navigate(`/category/${encodeURIComponent(category)}`);
+        closeMenu();
     };
 
+    // Updated to close menu on navigation
     const handleConcernClick = (concern) => {
-        console.log(`Navigating to concern: ${concern}`);
         navigate(`/concern/${encodeURIComponent(concern)}`);
-        setActiveDropdown(null);
+        closeMenu();
     };
 
     return (
@@ -165,7 +181,7 @@ const Navbar = () => {
             animate={controls}
         >
             <div className="nav-logo">
-                <NavLink to="/">
+                <NavLink to="/" onClick={closeMenu}>
                     <img
                         src="https://res.cloudinary.com/dphhbdytb/image/upload/v1752853728/Screenshot_2025-07-18_at_9.17.06_PM_j2vix7.png"
                         alt="Hyphen Logo"
@@ -173,7 +189,6 @@ const Navbar = () => {
                 </NavLink>
             </div>
 
-            {/*Mobile hamburger toggle */}
             <div
                 className="mobile-menu-toggle"
                 onClick={() => setIsMenuOpen((o) => !o)}
@@ -231,7 +246,7 @@ const Navbar = () => {
                                         className="view-all-link"
                                         onClick={() => {
                                             navigate("/products");
-                                            setActiveDropdown(null);
+                                            closeMenu();
                                         }}
                                     ></div>
                                 </div>
@@ -272,7 +287,7 @@ const Navbar = () => {
                     <NavLink
                         className="nav-about"
                         to="/about"
-                        onClick={() => setActiveDropdown(null)}
+                        onClick={closeMenu}
                     >
                         ABOUT US
                     </NavLink>
@@ -280,7 +295,7 @@ const Navbar = () => {
 
                 <div className="nav-login-cart">
                     <div>
-                        <NavLink to="/login">
+                        <NavLink to="/login" onClick={closeMenu}>
                             <img
                                 src="https://ik.imagekit.io/vinaykalirawna/next.png?updatedAt=1752857560443"
                                 alt="login-btn"
@@ -292,7 +307,7 @@ const Navbar = () => {
                             src="https://ik.imagekit.io/vinaykalirawna/feature-removebg-preview.png?updatedAt=1753100181108"
                             alt="vertical-bar"
                         />
-                        <NavLink to="/cart">
+                        <NavLink to="/cart" onClick={closeMenu}>
                             <img
                                 src="https://ik.imagekit.io/vinaykalirawna/add-button.png?updatedAt=1752857530618"
                                 alt="cart-btn"

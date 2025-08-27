@@ -43,7 +43,7 @@ const CategoryProducts = () => {
             return aValue < bValue ? 1 : -1;
         }
     });
-    
+
     const handleCategoryChange = (category) => {
         if (category === "All Products") {
             navigate("/products");

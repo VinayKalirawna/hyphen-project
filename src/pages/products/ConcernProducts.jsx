@@ -6,52 +6,76 @@ import ProductCard from "../../components/common/productCard/ProductCard";
 import "./Products.css";
 
 const ConcernProducts = () => {
-    const { concernName } = useParams();
+    const { concernName } = useParams(); // e.g., "SUN PROTECTION"
     const navigate = useNavigate();
-    const { loading, getProductsByConcern, getAllConcerns } = useProducts();
-    const [concernProducts, setConcernProducts] = useState([]);
+
+    const { loading, products, getAllConcerns } = useProducts();
+
+    // --- CHANGE 1: No longer need to replace hyphens with spaces ---
+    // useParams automatically decodes URL parameters (like %20 to a space).
+    const originalConcernName = concernName;
+
     const [sortBy, setSortBy] = useState("name");
     const [sortOrder, setSortOrder] = useState("asc");
-    const [selectedConcern, setSelectedConcern] = useState(concernName);
+    const [searchTerm, setSearchTerm] = useState("");
+    const [selectedConcern, setSelectedConcern] = useState(originalConcernName);
     const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
 
-    const concerns = getAllConcerns(); // Assuming this method exists in your context
+    const concerns = getAllConcerns();
 
     useEffect(() => {
-        const products = getProductsByConcern(concernName);
-        setConcernProducts(products);
-        setSelectedConcern(concernName);
-    }, [concernName, getProductsByConcern]);
+        setSelectedConcern(originalConcernName);
+        setSearchTerm("");
+    }, [originalConcernName]);
 
-    // Apply sorting
-    const sortedProducts = [...concernProducts].sort((a, b) => {
-        let aValue = a[sortBy];
-        let bValue = b[sortBy];
+    const filteredAndSortedProducts = products
+        .filter((product) => {
+            const concernMatch = selectedConcern
+                ? product.shopByConcern === selectedConcern
+                : true;
 
-        if (sortBy === "price") {
-            aValue = parseFloat(aValue?.amount || aValue);
-            bValue = parseFloat(bValue?.amount || bValue);
-        }
+            const searchMatch = product.name
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase());
 
-        if (sortOrder === "asc") {
-            return aValue > bValue ? 1 : -1;
-        } else {
-            return aValue < bValue ? 1 : -1;
-        }
-    });
+            return concernMatch && searchMatch;
+        })
+        .sort((a, b) => {
+            let aValue = a[sortBy];
+            let bValue = b[sortBy];
+
+            if (sortBy === "price") {
+                aValue = parseFloat(aValue?.amount || aValue);
+                bValue = parseFloat(bValue?.amount || bValue);
+            }
+
+            if (sortOrder === "asc") {
+                return aValue > bValue ? 1 : -1;
+            } else {
+                return aValue < bValue ? 1 : -1;
+            }
+        });
 
     const handleConcernChange = (concern) => {
         if (concern === "All Products") {
             navigate("/products");
         } else {
-            setSelectedConcern(concern);
-            navigate(`/concerns/${concern}`);
+            // --- CHANGE 2: Navigate to the desired route format ---
+            // Using /concern/ and passing the name directly.
+            navigate(`/concern/${concern}`);
         }
     };
 
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value);
+    };
+
     const clearFilters = () => {
+        setSearchTerm("");
         setSortBy("name");
         setSortOrder("asc");
+        setSelectedConcern(null);
+        navigate("/products");
     };
 
     if (loading) {
@@ -74,12 +98,16 @@ const ConcernProducts = () => {
             </div>
             <div className="container">
                 <div className="products-header">
-                    <h1>{concernName}</h1>
-                    <p>Products for {concernName.toLowerCase()}</p>
+                    <h1>{selectedConcern || "All Products"}</h1>
+                    <p>
+                        Products for{" "}
+                        {selectedConcern
+                            ? selectedConcern.toLowerCase()
+                            : "all concerns"}
+                    </p>
                 </div>
 
                 <div className="category-content">
-                    {/* Sidebar Filter */}
                     <div
                         className={`filter-sidebar ${
                             isMobileFilterOpen ? "mobile-open" : ""
@@ -94,17 +122,23 @@ const ConcernProducts = () => {
                                 Clear All
                             </button>
                         </div>
-
-                        {/* Shop Category Filter */}
+                        <div className="filter-section">
+                            <h4>Search</h4>
+                            <input
+                                type="text"
+                                placeholder="Search products..."
+                                value={searchTerm}
+                                onChange={handleSearchChange}
+                                className="search-input"
+                            />
+                        </div>
                         <div className="filter-section">
                             <h4>Shop by Concern</h4>
                             <div className="filter-options">
                                 <label className="filter-checkbox">
                                     <input
                                         type="checkbox"
-                                        checked={
-                                            selectedConcern === "All Products"
-                                        }
+                                        checked={!selectedConcern}
                                         onChange={() =>
                                             handleConcernChange("All Products")
                                         }
@@ -136,8 +170,6 @@ const ConcernProducts = () => {
                                 ))}
                             </div>
                         </div>
-
-                        {/* Sort Filter */}
                         <div className="filter-section">
                             <h4>Sort By</h4>
                             <select
@@ -161,10 +193,7 @@ const ConcernProducts = () => {
                             </select>
                         </div>
                     </div>
-
-                    {/* Main Content */}
                     <div className="products-main">
-                        {/* Mobile Filter Toggle */}
                         <div className="mobile-filter-header">
                             <button
                                 className="mobile-filter-toggle"
@@ -172,23 +201,15 @@ const ConcernProducts = () => {
                                     setIsMobileFilterOpen(!isMobileFilterOpen)
                                 }
                             >
-                                🔍 Filters ({selectedConcern ? 1 : 0})
+                                🔍 Filters
                             </button>
                             <span className="results-count">
-                                {sortedProducts.length} Products
+                                {filteredAndSortedProducts.length} Products
                             </span>
                         </div>
-
-                        <div className="products-results">
-                            <p className="results-count">
-                                Showing {sortedProducts.length} products for{" "}
-                                {concernName}
-                            </p>
-                        </div>
-
                         <div className="products-grid">
-                            {sortedProducts.length > 0 ? (
-                                sortedProducts.map((product) => (
+                            {filteredAndSortedProducts.length > 0 ? (
+                                filteredAndSortedProducts.map((product) => (
                                     <ProductCard
                                         key={product.id}
                                         product={product}
@@ -198,7 +219,7 @@ const ConcernProducts = () => {
                             ) : (
                                 <div className="no-products">
                                     <h3>No products found</h3>
-                                    <p>No products found for this concern.</p>
+                                    <p>Try adjusting your filters.</p>
                                 </div>
                             )}
                         </div>
